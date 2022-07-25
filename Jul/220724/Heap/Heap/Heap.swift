@@ -16,7 +16,7 @@ enum ChildType {
 protocol Heap {
     mutating func insert(_ data : Int)
     mutating func remove() -> Int?
-    // func heapify() -> [Int]
+    func heapify(_ array : inout [Int])
     // func heapSorting() -> [Int]
 }
 
@@ -36,6 +36,11 @@ extension Heap {
 
 struct maxHeap : Heap {
     var array = Array<Int>()
+    
+    var maxValue : Int? {
+        if array.count == 1 { return nil }
+        else { return array[1] }
+    }
     
     init() {
         array.append(Int.max)
@@ -89,6 +94,37 @@ struct maxHeap : Heap {
                     }
                 case .none :
                     return returnValue
+            }
+        }
+    }
+    
+    func heapify(_ array: inout [Int]) {
+        array.insert(Int.max, at: 0)
+        
+        for index in (1...(array.count - 1) / 2).reversed() {
+            var currentIndex = index
+            
+            whileLoop : while true {
+                switch hasChild(currentIndex, size : array.count) {
+                    case .both :
+                        let greaterChildIndex = array[currentIndex * 2] > array[currentIndex * 2 + 1] ? currentIndex * 2 : currentIndex * 2 + 1
+                        if array[greaterChildIndex] > array[currentIndex] {
+                            array.swapAt(greaterChildIndex, currentIndex)
+                            currentIndex = greaterChildIndex
+                        } else {
+                            break whileLoop
+                        }
+                        
+                    case .left :
+                        if array[getLeftChildIndex(currentIndex)] > array[currentIndex] {
+                            array.swapAt(getLeftChildIndex(currentIndex), currentIndex)
+                        } else {
+                            break whileLoop
+                        }
+                        
+                    case .none :
+                        break whileLoop
+                }
             }
         }
     }
