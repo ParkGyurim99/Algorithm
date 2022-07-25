@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A91AAEA288D6564006FEEFF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91AAE9288D6564006FEEFF /* main.swift */; };
-		1A91AAF1288D656F006FEEFF /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91AAF0288D656F006FEEFF /* Heap.swift */; };
+		1A91AAF1288D656F006FEEFF /* Heap+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91AAF0288D656F006FEEFF /* Heap+Protocol.swift */; };
+		1ABDBE04288F27C1003BA241 /* MaxHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDBE03288F27C1003BA241 /* MaxHeap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +27,8 @@
 /* Begin PBXFileReference section */
 		1A91AAE6288D6564006FEEFF /* Heap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Heap; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A91AAE9288D6564006FEEFF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		1A91AAF0288D656F006FEEFF /* Heap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
+		1A91AAF0288D656F006FEEFF /* Heap+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heap+Protocol.swift"; sourceTree = "<group>"; };
+		1ABDBE03288F27C1003BA241 /* MaxHeap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHeap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,16 @@
 			isa = PBXGroup;
 			children = (
 				1A91AAE9288D6564006FEEFF /* main.swift */,
-				1A91AAF0288D656F006FEEFF /* Heap.swift */,
+				1ABDBE02288F27B4003BA241 /* Heap */,
+			);
+			path = Heap;
+			sourceTree = "<group>";
+		};
+		1ABDBE02288F27B4003BA241 /* Heap */ = {
+			isa = PBXGroup;
+			children = (
+				1A91AAF0288D656F006FEEFF /* Heap+Protocol.swift */,
+				1ABDBE03288F27C1003BA241 /* MaxHeap.swift */,
 			);
 			path = Heap;
 			sourceTree = "<group>";
@@ -124,7 +135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A91AAEA288D6564006FEEFF /* main.swift in Sources */,
-				1A91AAF1288D656F006FEEFF /* Heap.swift in Sources */,
+				1A91AAF1288D656F006FEEFF /* Heap+Protocol.swift in Sources */,
+				1ABDBE04288F27C1003BA241 /* MaxHeap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
