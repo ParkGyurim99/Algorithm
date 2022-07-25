@@ -7,54 +7,33 @@
 
 import Foundation
 
-var heap = maxHeap()
+// Initialize
+var heap = MaxHeap()
 
-heap.insert(30)
-heap.insert(20)
-heap.insert(18)
-heap.insert(9)
-heap.insert(6)
-heap.insert(50)
+// Insert
+print("📌 Insert")
+[3, 7, 9, 10, 15, 19, 20, 30, 33].forEach { heap.insert($0) }
+heap.display()
 
-print(heap.array)
+// Sorting
+print("\n📌 Sorting")
+print(heap.sorted())
 
-heap.heapSort()
-print(heap.array)
+// Sorted (in-place)
+//print("\nPrint HeapSorted")
+//heap.sort()
+//heap.display()
 
-//var temp : [Int] = [6, 9, 18, 50, 30, 20]
-//heap.heapify(&temp)
-//print(temp)
+// Heapify
+var source : [Int] = [3, 7, 9, 10, 15, 19, 20, 30, 33]
+print("\n📌 Heapify")
+print(source, terminator: " → ")
+MaxHeap.heapify(&source)
+print(source[1..<source.endIndex])
 
-
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
-//
-//print("heap remove(pop) :", heap.remove())
-//
-//print(heap.array)
+// Pop
+print("\n📌 Pop")
+for _ in 0..<10 {
+    if let popped = heap.pop() { print("heap pop :", popped, terminator: " → ") }
+    heap.display()
+}

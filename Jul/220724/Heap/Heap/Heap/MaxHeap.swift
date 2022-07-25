@@ -19,6 +19,8 @@ struct MaxHeap : Heap {
     
     init(_ data : Int) { array.append(contentsOf: [Int.max, data]) }
     
+    init(heapified : [Int]) { array = heapified }
+    
     mutating func insert(_ data : Int) {
         var currentIndex = array.count
         
@@ -123,8 +125,6 @@ struct MaxHeap : Heap {
     }
     
     static func heapify(_ array: inout [Int]) {
-        defer { print(array[1..<array.endIndex]) }
-        
         array.insert(Int.max, at: 0)
         
         for index in (1...(array.count - 1) / 2).reversed() {
