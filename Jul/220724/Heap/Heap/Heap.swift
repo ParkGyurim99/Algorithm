@@ -20,6 +20,20 @@ protocol Heap {
     // func heapSorting() -> [Int]
 }
 
+extension Heap {
+    func hasChild(_ index : Int, size : Int) -> ChildType {
+        if size < 2 * index + 1 { return .none } // size - 1 < 2 * index
+        else if size == 2 * index + 1 { return .left }
+        else { return .both }
+    }
+    
+    func getParentIndex(_ index : Int) -> Int { index / 2 }
+    
+    func getLeftChildIndex(_ index : Int) -> Int { 2 * index }
+    
+    func getRightChildIndex(_ index : Int) -> Int { 2 * index + 1 }
+}
+
 struct maxHeap : Heap {
     var array = Array<Int>()
     
@@ -32,17 +46,8 @@ struct maxHeap : Heap {
         array.append(data)
     }
     
-    func hasChild(_ index : Int) -> ChildType {
-        if array.count - 1 < 2 * index { return .none }
-        else if array.count - 1 == 2 * index { return .left }
-        else { return .both }
-    }
-    
-    private func getParentIndex(_ index : Int) -> Int { index / 2 }
-    private func getLeftChildIndex(_ index : Int) -> Int { 2 * index }
-    private func getRightChildIndex(_ index : Int) -> Int { 2 * index + 1 }
     private func getGreaterChildIndex(_ index : Int) -> Int {
-        return array[index * 2] > array[index * 2 + 1] ? index * 2 : index * 2 + 1
+        array[index * 2] > array[index * 2 + 1] ? index * 2 : index * 2 + 1
     }
     
     mutating func insert(_ data : Int) {
@@ -63,10 +68,11 @@ struct maxHeap : Heap {
         
         var currentIndex = 1
         let returnValue = array[currentIndex]
+
         array[currentIndex] = array.removeLast()
         
-        while hasChild(currentIndex) != .none {
-            switch hasChild(currentIndex) {
+        while true {
+            switch hasChild(currentIndex, size : array.count) {
                 case .both :
                     if array[getGreaterChildIndex(currentIndex)] > array[currentIndex] {
                         array.swapAt(getGreaterChildIndex(currentIndex), currentIndex)
@@ -77,6 +83,7 @@ struct maxHeap : Heap {
                 case .left :
                     if array[getLeftChildIndex(currentIndex)] > array[currentIndex] {
                         array.swapAt(getLeftChildIndex(currentIndex), currentIndex)
+                        currentIndex = getLeftChildIndex(currentIndex)
                     } else {
                         return returnValue
                     }
@@ -84,7 +91,5 @@ struct maxHeap : Heap {
                     return returnValue
             }
         }
-        
-        return returnValue
     }
 }
